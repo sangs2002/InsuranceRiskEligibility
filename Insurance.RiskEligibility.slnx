@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="D:/Verisk Assessment/Insurance.RiskEligibility.API/Insurance.RiskEligibility.API/Insurance.RiskEligibility.API.csproj" />
+  <Project Path="D:/Verisk Assessment/Insurance.RiskEligibility.API/Insurance.RiskEligibility.Application/Insurance.RiskEligibility.Application.csproj" />
+  <Project Path="D:/Verisk Assessment/Insurance.RiskEligibility.API/Insurance.RiskEligibility.Domain/Insurance.RiskEligibility.Domain.csproj" />
+  <Project Path="D:/Verisk Assessment/Insurance.RiskEligibility.API/Insurance.RiskEligibility.Infrastructure/Insurance.RiskEligibility.Infrastructure.csproj" />
+</Solution>
