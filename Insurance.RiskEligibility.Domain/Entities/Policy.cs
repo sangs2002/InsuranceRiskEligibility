@@ -33,10 +33,6 @@
             EndDate = endDate;
         }
 
-        public bool IsActive(DateTime onDate)
-        {
-            return onDate >= StartDate && onDate <= EndDate;
-        }
     }
 
 }

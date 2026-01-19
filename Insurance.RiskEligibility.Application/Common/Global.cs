@@ -1,0 +1,12 @@
+﻿global using Insurance.RiskEligibility.Domain.Enums;
+global using Insurance.RiskEligibility.Application.DTO;
+global using Insurance.RiskEligibility.Domain.Constants;
+global using Insurance.RiskEligibility.Application.Common;
+global using Insurance.RiskEligibility.Domain.Models;
+global using Insurance.RiskEligibility.Domain.Entities;
+global using Microsoft.EntityFrameworkCore;
+global using System.Text.Json.Serialization;
+global using Insurance.RiskEligibility.Application.Abstraction.Persistence;
+global using Insurance.RiskEligibility.Application.Abstraction.Risk;
+global using Insurance.RiskEligibility.Application.Abstraction.Validation;
+global using Insurance.RiskEligibility.Application.Exceptions;

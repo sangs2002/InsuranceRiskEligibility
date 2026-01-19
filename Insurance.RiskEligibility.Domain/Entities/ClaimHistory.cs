@@ -25,11 +25,6 @@
             AccidentDate = accidentDate;
             ClaimAmount = claimAmount;
         }
-
-        public bool IsRecentClaim(int years)
-        {
-            return AccidentDate >= DateTime.UtcNow.AddYears(-years);
-        }
     }
 
 }

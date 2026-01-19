@@ -1,34 +1,40 @@
-﻿using Azure.Core;
-
-namespace Insurance.RiskEligibility.API.Controllers
+﻿namespace Insurance.RiskEligibility.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("risk")]
     [ApiController]
     public class RiskEligibilityController : ControllerBase
     {
 
-        private readonly IRiskEvaluationService _riskEvaluationService;
+        private readonly IRiskEvaluationCommandService _riskEvaluationCommadService;
+        private readonly IRiskEvaluationQueryService _riskEvaluationQueryService;
 
-        public RiskEligibilityController(RiskEvaluationService riskEvaluationService)
+
+        public RiskEligibilityController(IRiskEvaluationCommandService riskEvaluationCommandService, IRiskEvaluationQueryService riskEvaluationQueryService)
         {
-            _riskEvaluationService = riskEvaluationService ?? throw new ArgumentNullException(nameof(RiskEvaluationService));
+            _riskEvaluationCommadService = riskEvaluationCommandService ?? throw new ArgumentNullException(nameof(riskEvaluationCommandService));
+            _riskEvaluationQueryService = riskEvaluationQueryService ?? throw new ArgumentException(nameof(riskEvaluationQueryService));
         }
 
         [HttpPost("evaluate")]
-        public async Task<IActionResult> EvaluateAsync([FromBody] EligibilityRequest eligibilityRequest)
+        public async Task<IActionResult> EvaluateAsync([FromBody] EligibilityRequest request)
         {
-            if (eligibilityRequest is null)
+            var result = await _riskEvaluationCommadService.EvaluateAsync(request);
+
+            return Ok(new RiskEligibilityResponse
             {
-                return BadRequest("Eligibility request must not be null.");
-            }
+                CustomerId = request.CustomerId,
+                IsEligible = result.IsEligible,
+                RiskScore = result.RiskScore,
+                PolicyType = result.PolicyType,
+                RiskTier = result.RiskTier
+            });
+        }
 
-            var result = await _riskEvaluationService.Evaluate(eligibilityRequest);
+        [HttpGet("tiers")]
 
-            if (!result.IsEligible)
-            {
-                return UnprocessableEntity(result);
-            }
-
+        public async Task<IActionResult> GetTierAsync()
+        {
+            var result = await _riskEvaluationQueryService.GetAllAsync();
             return Ok(result);
         }
     }

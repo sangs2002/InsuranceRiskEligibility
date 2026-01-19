@@ -5,7 +5,7 @@
         public int CustomerId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public DateTime DateOfBirth { get; private set; }
+        public DateOnly DateOfBirth { get; private set; }
         public int DrivingExperience { get; private set; }
         public string PhoneNumber { get; private set; }
         public decimal AnnualIncome { get; private set; }
@@ -21,9 +21,10 @@
 
         private Customer() { }
 
-        public Customer(int customerId,string firstName,string lastName,DateTime dateOfBirth, int drivingExperience, string phoneNumber,decimal annualIncome,string occupation)
+        public Customer(int customerId,string firstName,string lastName,DateOnly dateOfBirth, int drivingExperience, string phoneNumber,decimal annualIncome,string occupation)
         {
-            if (dateOfBirth >= DateTime.UtcNow)
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            if (dateOfBirth >= today)
                 throw new ArgumentException("Date of birth must be in the past.");
 
             if (drivingExperience < 0)
@@ -39,32 +40,6 @@
             Occupation = occupation;
         }
 
-        public int GetAge()
-        {
-            var today = DateTime.UtcNow;
-            var age = today.Year - DateOfBirth.Year;
-            if (DateOfBirth.Date > today.AddYears(-age)) age--;
-            return age;
-        }
-
-        public bool HasSufficientDrivingExperience(int minimumYears)
-        {
-            return DrivingExperience >= minimumYears;
-        }
-
-        public void AddClaim(ClaimHistory claim)
-        {
-            _claims.Add(claim);
-        }
-
-        public void AddPolicy(Policy policy)
-        {
-            _policies.Add(policy);
-        }
-        public void AssignRiskProfile(RiskProfile riskProfile)
-        {
-            RiskProfile = riskProfile;
-        }
     }
 
 }

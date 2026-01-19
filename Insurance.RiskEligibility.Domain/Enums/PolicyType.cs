@@ -2,8 +2,8 @@
 {
     public enum PolicyType
     {
-        Comprehensive,
-        ThirdParty,
-        Collision
+        Comprehensive = 1,
+        ThirdParty = 2,
+        Collision = 3
     }
 }

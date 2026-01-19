@@ -1,6 +1,4 @@
-﻿using Insurance.RiskEligibility.Application.Interfaces;
-
-namespace Insurance.RiskEligibility.Application.Specification
+﻿namespace Insurance.RiskEligibility.Application.Specification
 {
     public class PolicyTypeSpecification : ISpecification<EligibilityRequest>
     {
