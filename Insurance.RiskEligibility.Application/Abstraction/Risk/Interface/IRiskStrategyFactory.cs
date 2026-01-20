@@ -1,4 +1,4 @@
-﻿namespace Insurance.RiskEligibility.Application.Abstraction.Risk
+﻿namespace Insurance.RiskEligibility.Application.Abstraction.Risk.Interface
 {
     public interface IRiskStrategyFactory
     {

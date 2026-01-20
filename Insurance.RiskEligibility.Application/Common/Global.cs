@@ -7,6 +7,5 @@ global using Insurance.RiskEligibility.Domain.Entities;
 global using Microsoft.EntityFrameworkCore;
 global using System.Text.Json.Serialization;
 global using Insurance.RiskEligibility.Application.Abstraction.Persistence;
-global using Insurance.RiskEligibility.Application.Abstraction.Risk;
 global using Insurance.RiskEligibility.Application.Abstraction.Validation;
-global using Insurance.RiskEligibility.Application.Exceptions;
+global using Insurance.RiskEligibility.Application.Abstraction.Risk.Interface;

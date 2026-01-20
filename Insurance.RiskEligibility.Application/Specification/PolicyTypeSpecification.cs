@@ -4,7 +4,7 @@
     {
         public string ErrorMessage => "Unsupported policy type.";
 
-        public bool IsSatisfiedBy(EligibilityRequest entity)
+        public bool IsValid(EligibilityRequest entity)
         {
             return Enum.IsDefined(typeof(PolicyType), entity.PolicyType);
         }

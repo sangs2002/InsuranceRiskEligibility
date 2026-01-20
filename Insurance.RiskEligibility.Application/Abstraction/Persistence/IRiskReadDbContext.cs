@@ -2,7 +2,7 @@
 {
     public interface IRiskReadDbContext
     {
-        IQueryable<Customer?> Customers { get; }
+        IQueryable<Customer> Customers { get; }
 
     }
 }

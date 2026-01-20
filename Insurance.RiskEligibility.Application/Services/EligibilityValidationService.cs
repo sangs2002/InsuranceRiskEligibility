@@ -14,7 +14,7 @@
         {
      
             var error = _specifications
-                .Where(spec => !spec.IsSatisfiedBy(request))
+                .Where(spec => !spec.IsValid(request))
                 .Select(spec => spec.ErrorMessage)
                 .ToList();
 

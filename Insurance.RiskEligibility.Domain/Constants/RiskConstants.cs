@@ -5,7 +5,7 @@
 
         public static class ComprehensivePolicy
         {
-            public const int YoungAgeThreshold = 25;
+            public const int YoungAge = 25;
             public const int YoungDriverRiskScore = 30;
             public const int ExperiencedRiskScore = 10;
 
@@ -17,7 +17,7 @@
 
         public static class ThirdPartyPolicy
         {
-            public const int YoungAgeThreshold = 25;
+            public const int YoungAge = 25;
             public const int YoungDriverRiskScore = 15;
             public const int ExperiencedRiskScore = 5;
 
@@ -29,7 +29,7 @@
 
         public static class CollisionPolicy
         {
-            public const int YoungAgeThreshold = 25;
+            public const int YoungAge = 25;
             public const int YoungDriverRiskScore = 20;
             public const int ExperiencedRiskScore = 8;
 
@@ -39,7 +39,7 @@
             public const int AccidentRiskMultiplier = 15;
         }
 
-        public static class RiskTierThresholds
+        public static class RiskTier
         {
             public const int LowRiskMaxScore = 30;
             public const int MediumRiskMaxScore = 65;

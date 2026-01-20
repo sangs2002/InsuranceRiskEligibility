@@ -5,24 +5,23 @@
     public class RiskEligibilityController : ControllerBase
     {
 
-        private readonly IRiskEvaluationCommandService _riskEvaluationCommadService;
-        private readonly IRiskEvaluationQueryService _riskEvaluationQueryService;
+        private readonly IRiskCommandService _riskCommadService;
+        private readonly IRiskQueryService _riskQueryService;
 
 
-        public RiskEligibilityController(IRiskEvaluationCommandService riskEvaluationCommandService, IRiskEvaluationQueryService riskEvaluationQueryService)
+        public RiskEligibilityController(IRiskCommandService riskcommandService, IRiskQueryService riskqueryservice)
         {
-            _riskEvaluationCommadService = riskEvaluationCommandService ?? throw new ArgumentNullException(nameof(riskEvaluationCommandService));
-            _riskEvaluationQueryService = riskEvaluationQueryService ?? throw new ArgumentException(nameof(riskEvaluationQueryService));
+            _riskCommadService = riskcommandService ?? throw new ArgumentNullException(nameof(riskcommandService));
+            _riskQueryService = riskqueryservice ?? throw new ArgumentException(nameof(riskqueryservice));
         }
 
         [HttpPost("evaluate")]
         public async Task<IActionResult> EvaluateAsync([FromBody] EligibilityRequest request)
         {
-            var result = await _riskEvaluationCommadService.EvaluateAsync(request);
+            var result = await _riskCommadService.EvaluateAsync(request);
 
             return Ok(new RiskEligibilityResponse
             {
-                CustomerId = request.CustomerId,
                 IsEligible = result.IsEligible,
                 RiskScore = result.RiskScore,
                 PolicyType = result.PolicyType,
@@ -34,7 +33,7 @@
 
         public async Task<IActionResult> GetTierAsync()
         {
-            var result = await _riskEvaluationQueryService.GetAllAsync();
+            var result = await _riskQueryService.GetAllAsync();
             return Ok(result);
         }
     }

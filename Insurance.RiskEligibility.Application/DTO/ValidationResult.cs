@@ -3,22 +3,22 @@
     public class ValidationResult
     {
        public bool IsValid { get; }
-        public IReadOnlyCollection<string> Errors { get; }
+        public List<string> Errors { get; }
 
 
-        public ValidationResult(bool isvalid, IReadOnlyCollection<string> errors)
+        public ValidationResult(bool isvalid, List<string> errors)
         {
-            Errors = errors.ToList().AsReadOnly();
+            Errors = errors;
             IsValid = isvalid;
         }
 
 
         public static ValidationResult Success()
         {
-            return new ValidationResult(true, Array.Empty<string>());
+            return new ValidationResult(true, new List<string>());
         }
 
-        public static ValidationResult Failure(IReadOnlyCollection<string> errors)
+        public static ValidationResult Failure(List<string> errors)
         {
             return new ValidationResult(false,errors);
         }

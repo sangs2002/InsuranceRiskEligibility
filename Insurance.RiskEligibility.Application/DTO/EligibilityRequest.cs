@@ -2,11 +2,10 @@
 {
     public class EligibilityRequest
     {
-        public int CustomerId { get; set; }
-        public DateOnly DateOfBirth { get; }
-        public int DrivingExperience { get; }
-        public PolicyType PolicyType { get; }
-        public int AccidentCount { get; }
+        public DateOnly DateOfBirth { get; set; }
+        public int DrivingExperience { get; set; }
+        public PolicyType PolicyType { get; set; }
+        public int AccidentCount { get; set; }
 
 
         public EligibilityRequest(DateOnly dateOfBirth, int drivingExperience, PolicyType policyType, int accidentCount)

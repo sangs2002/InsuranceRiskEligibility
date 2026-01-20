@@ -1,19 +1,19 @@
 ﻿namespace Insurance.RiskEligibility.Application.Queries
 {
-    public class RiskEvaluationQueryService : IRiskEvaluationQueryService
+    public class RiskQueryService : IRiskQueryService
     {
 
         private readonly IRiskReadDbContext _riskEligibilityDbContext;
 
-        public RiskEvaluationQueryService(IRiskReadDbContext riskEligibilityDbContext)
+        public RiskQueryService(IRiskReadDbContext riskEligibilityDbContext)
         {
             _riskEligibilityDbContext = riskEligibilityDbContext;
         }
-        public async Task<IReadOnlyList<RiskProfileReadDto>> GetAllAsync()
+        public async Task<List<RiskProfileResponse>> GetAllAsync()
         {
             return await _riskEligibilityDbContext.Customers
              .Where(c => c.RiskProfile != null)
-             .Select(c => new RiskProfileReadDto
+             .Select(c => new RiskProfileResponse
              {
                  CustomerId = c.CustomerId,
                  RiskScore = c.RiskProfile!.RiskScore,

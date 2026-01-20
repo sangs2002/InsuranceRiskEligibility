@@ -1,6 +1,6 @@
 ﻿namespace Insurance.RiskEligibility.Application.DTO
 {
-    public class RiskProfileReadDto
+    public class RiskProfileResponse
     {
         public int CustomerId { get; set; }
         public int RiskScore { get; set; }

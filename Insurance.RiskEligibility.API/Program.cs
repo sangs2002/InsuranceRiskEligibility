@@ -18,29 +18,23 @@ builder.Services.AddScoped<ISpecification<EligibilityRequest>, AccidentHistorySp
 builder.Services.AddScoped<ISpecification<EligibilityRequest>, PolicyTypeSpecification>();
 
 // Risk rules
-builder.Services.AddScoped<IRiskTierRuler, LowRiskRule>();
-builder.Services.AddScoped<IRiskTierRuler, MediumRiskRule>();
-builder.Services.AddScoped<IRiskTierRuler, HighRiskRule>();
+builder.Services.AddScoped<IRiskTierRuler, LowRiskTier>();
+builder.Services.AddScoped<IRiskTierRuler, MediumRiskTier>();
+builder.Services.AddScoped<IRiskTierRuler, HighRiskTier>();
 
-builder.Services.AddScoped<IRiskTierResolver, RiskTierResolver>();
+builder.Services.AddScoped<IRiskTier, RiskTiersService>();
 builder.Services.AddScoped<IEligibilityValidationService, EligibilityValidationService>();
 
 //Strategies
-builder.Services.AddScoped<ComprehensivePolicyRiskStrategy>();
-builder.Services.AddScoped<ThirdPartyPolicyRiskStrategy>();
-builder.Services.AddScoped<CollisionPolicyRiskStrategy>();
 builder.Services.AddScoped<IRiskStrategyFactory, RiskStrategyFactory>();
-builder.Services.AddScoped<IReadOnlyDictionary<PolicyType, IRiskCalculationStrategy>>(sp =>
-    new Dictionary<PolicyType, IRiskCalculationStrategy>
-    {
-        { PolicyType.Comprehensive, sp.GetRequiredService<ComprehensivePolicyRiskStrategy>() },
-        { PolicyType.ThirdParty, sp.GetRequiredService<ThirdPartyPolicyRiskStrategy>() },
-        { PolicyType.Collision, sp.GetRequiredService<CollisionPolicyRiskStrategy>() }
-    });
+builder.Services.AddScoped<IRiskCalculationStrategy, ComprehensivePolicyRiskStrategy>();
+builder.Services.AddScoped<IRiskCalculationStrategy, ThirdPartyPolicyRiskStrategy>();
+builder.Services.AddScoped<IRiskCalculationStrategy, CollisionPolicyRiskStrategy>();
+
 
 //Services
-builder.Services.AddScoped<IRiskEvaluationCommandService, RiskEvaluationCommandService>();
-builder.Services.AddScoped<IRiskEvaluationQueryService, RiskEvaluationQueryService>();
+builder.Services.AddScoped<IRiskCommandService, RiskEvaluationCommandService>();
+builder.Services.AddScoped<IRiskQueryService, RiskQueryService>();
 
 // Repositories and Unit of Work
 builder.Services.AddScoped<ICustomerRespository, CustomerRespository>();

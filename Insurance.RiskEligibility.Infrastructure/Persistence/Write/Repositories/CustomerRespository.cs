@@ -10,16 +10,6 @@ namespace Insurance.RiskEligibility.Infrastructure.Persistence.Write.Repositorie
             _dbContext = dbContext;
         }
 
-        public async Task<Customer?> GetByIdAsync(int customerId)
-        {
-            var result = await _dbContext.Customer.Include(c=> c.RiskProfile)
-                                           .Include(c => c.Claims)
-                                           .Include(c => c.Policies)
-                                           .FirstOrDefaultAsync(c => c.CustomerId == customerId);
-
-            return result;
-        }
-
         public void Update(Customer customer)
         {
             _dbContext.Customer.Update(customer);

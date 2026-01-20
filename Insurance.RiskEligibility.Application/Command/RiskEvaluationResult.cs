@@ -2,7 +2,6 @@
 {
     public class RiskEvaluationResult
     {
-        public int customerId { get; init; }
         public bool IsEligible { get; }
         public int? RiskScore { get; }
         public RiskTier? RiskTier { get; }

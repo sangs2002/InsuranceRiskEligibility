@@ -1,15 +1,14 @@
-﻿using Insurance.RiskEligibility.Application.Abstraction.Risk;
-
-namespace Insurance.RiskEligibility.Application.Abstraction.Risk.Strategies
+﻿namespace Insurance.RiskEligibility.Application.Abstraction.Risk.Implementations.Strategies
 {
     public class ComprehensivePolicyRiskStrategy : IRiskCalculationStrategy
     {
+        public PolicyType PolicyType => PolicyType.Comprehensive;
         public int CalculateRiskScore(EligibilityRequest request)
         {
             int score = 0;
             int age = AgeCalculator.CalculateAge(request.DateOfBirth);
 
-            score += age < RiskConstants.ComprehensivePolicy.YoungAgeThreshold
+            score += age < RiskConstants.ComprehensivePolicy.YoungAge
                 ? RiskConstants.ComprehensivePolicy.YoungDriverRiskScore
                 : RiskConstants.ComprehensivePolicy.ExperiencedRiskScore;
 

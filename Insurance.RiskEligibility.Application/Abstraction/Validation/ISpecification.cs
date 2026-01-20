@@ -2,7 +2,7 @@
 {
     public interface ISpecification<T>
     {
-        bool IsSatisfiedBy(T entity);
+        bool IsValid(T entity);
         string ErrorMessage { get; }
     }
 }

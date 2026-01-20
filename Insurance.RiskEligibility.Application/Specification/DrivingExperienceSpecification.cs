@@ -3,10 +3,9 @@
     public class DrivingExperienceSpecification : ISpecification<EligibilityRequest>
     {
         public string ErrorMessage =>
-               $"Driving experience must be between {EligibilityConstants.MinDrivingExperience} " +
-               $"and applicant age.";
+               $"Driving experience must be between {EligibilityConstants.MinDrivingExperience} " + $"and applicant age.";
 
-        public bool IsSatisfiedBy(EligibilityRequest entity)
+        public bool IsValid(EligibilityRequest entity)
         {
             var MinExperience = EligibilityConstants.MinDrivingExperience;
             var MaxExperience = AgeCalculator.CalculateAge(entity.DateOfBirth);

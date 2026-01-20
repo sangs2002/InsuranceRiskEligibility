@@ -3,25 +3,12 @@
     public class Customer
     {
         public int CustomerId { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        public string Name { get; private set; }
         public DateOnly DateOfBirth { get; private set; }
         public int DrivingExperience { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public decimal AnnualIncome { get; private set; }
-        public string Occupation { get; private set; }
         public RiskProfile RiskProfile { get; private set; }
 
-
-        private readonly List<ClaimHistory> _claims = new();
-        private readonly List<Policy> _policies = new();
-
-        public IReadOnlyCollection<ClaimHistory> Claims => _claims;
-        public IReadOnlyCollection<Policy> Policies => _policies;
-
-        private Customer() { }
-
-        public Customer(int customerId,string firstName,string lastName,DateOnly dateOfBirth, int drivingExperience, string phoneNumber,decimal annualIncome,string occupation)
+        public Customer(int customerId,string name,DateOnly dateOfBirth, int drivingExperience)
         {
             var today = DateOnly.FromDateTime(DateTime.UtcNow);
             if (dateOfBirth >= today)
@@ -31,13 +18,9 @@
                 throw new ArgumentException("Driving experience cannot be negative.");
 
             CustomerId = customerId;
-            FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
-            LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+            Name = name;
             DateOfBirth = dateOfBirth;
             DrivingExperience = drivingExperience;
-            PhoneNumber = phoneNumber;
-            AnnualIncome = annualIncome;
-            Occupation = occupation;
         }
 
     }

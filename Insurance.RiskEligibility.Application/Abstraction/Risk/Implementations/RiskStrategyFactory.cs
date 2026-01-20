@@ -1,12 +1,12 @@
-﻿namespace Insurance.RiskEligibility.Application.Abstraction.Risk.Factories
+﻿namespace Insurance.RiskEligibility.Application.Abstraction.Risk.Implementations
 {
     public class RiskStrategyFactory : IRiskStrategyFactory
     {
-        private readonly IReadOnlyDictionary<PolicyType, IRiskCalculationStrategy> _strategies;
+        private readonly Dictionary<PolicyType, IRiskCalculationStrategy> _strategies;
 
-        public RiskStrategyFactory(IReadOnlyDictionary<PolicyType, IRiskCalculationStrategy> strategies)
-        {
-            _strategies = strategies;
+        public RiskStrategyFactory(IEnumerable<IRiskCalculationStrategy> strategies)
+        {   
+            _strategies = strategies.ToDictionary(s => s.PolicyType);
         }
 
         public IRiskCalculationStrategy GetStrategy(PolicyType policyType)

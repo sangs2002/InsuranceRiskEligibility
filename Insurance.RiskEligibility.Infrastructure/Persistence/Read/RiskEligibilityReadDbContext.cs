@@ -2,7 +2,7 @@
 {
     public partial class RiskEligibilityDbContext : IRiskReadDbContext
     {
-        public IQueryable<Customer?> Customers => Customer.AsNoTracking();
+        public IQueryable<Customer> Customers => Customer;
 
     }
 }
