@@ -9,5 +9,6 @@
         public PolicyType? PolicyType { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public RiskTier? RiskTier { get; set; } 
+
     }
 }

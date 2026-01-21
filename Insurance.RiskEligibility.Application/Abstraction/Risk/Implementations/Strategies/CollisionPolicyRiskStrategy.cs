@@ -2,12 +2,12 @@
 {
     public class CollisionPolicyRiskStrategy: IRiskCalculationStrategy
     {
-        public PolicyType PolicyType => PolicyType.Comprehensive;
+        public PolicyType PolicyType => PolicyType.Collision;
 
         public int CalculateRiskScore(EligibilityRequest request)
         {
             int score = 0;
-            int age = AgeCalculator.CalculateAge(request.DateOfBirth);
+            int age = request.Age;
 
             score += age < RiskConstants.CollisionPolicy.YoungAge
                 ? RiskConstants.CollisionPolicy.YoungDriverRiskScore

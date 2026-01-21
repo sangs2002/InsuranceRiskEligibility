@@ -15,7 +15,7 @@
                 throw new ArgumentException("Coverage amount must be positive.");
 
             PolicyId = policyId;
-            PolicyNumber = policyNumber ?? throw new ArgumentNullException(nameof(policyNumber));
+            PolicyNumber = policyNumber;
             PolicyType = policyType;
             CoverageAmount = coverageAmount;
             

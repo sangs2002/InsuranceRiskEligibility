@@ -6,7 +6,7 @@
         public int CalculateRiskScore(EligibilityRequest request)
         {
             int score = 0;
-            int age = AgeCalculator.CalculateAge(request.DateOfBirth);
+            int age = request.Age;
 
             score += age < RiskConstants.ComprehensivePolicy.YoungAge
                 ? RiskConstants.ComprehensivePolicy.YoungDriverRiskScore

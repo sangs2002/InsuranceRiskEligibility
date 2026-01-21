@@ -2,11 +2,11 @@
 {
     public class ThirdPartyPolicyRiskStrategy : IRiskCalculationStrategy
     {
-        public PolicyType PolicyType => PolicyType.Comprehensive;
+        public PolicyType PolicyType => PolicyType.ThirdParty;
         public int CalculateRiskScore(EligibilityRequest request)
         {
             int score = 0;
-            int age = AgeCalculator.CalculateAge(request.DateOfBirth);
+            int age = request.Age;
 
             score += age < RiskConstants.ThirdPartyPolicy.YoungAge
                 ? RiskConstants.ThirdPartyPolicy.YoungDriverRiskScore

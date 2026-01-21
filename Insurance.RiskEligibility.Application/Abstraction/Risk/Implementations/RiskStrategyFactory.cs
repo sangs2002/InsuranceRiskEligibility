@@ -17,7 +17,7 @@
             }
 
             throw new NotSupportedException(
-                $"Risk calculation strategy is not configured for policy type '{policyType}'.");
+                $"Risk strategy doesn't contains the policy type '{policyType}'.");
         }
     }
 }

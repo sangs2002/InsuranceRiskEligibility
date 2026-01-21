@@ -1,39 +1,37 @@
 ﻿namespace Insurance.RiskEligibility.API.Controllers
 {
-    [Route("risk")]
     [ApiController]
+    [Route("api/risk")]
     public class RiskEligibilityController : ControllerBase
     {
+        private readonly IMediator _mediator;
 
-        private readonly IRiskCommandService _riskCommadService;
-        private readonly IRiskQueryService _riskQueryService;
-
-
-        public RiskEligibilityController(IRiskCommandService riskcommandService, IRiskQueryService riskqueryservice)
+        public RiskEligibilityController( IMediator mediator)
         {
-            _riskCommadService = riskcommandService ?? throw new ArgumentNullException(nameof(riskcommandService));
-            _riskQueryService = riskqueryservice ?? throw new ArgumentException(nameof(riskqueryservice));
+            _mediator = mediator;
         }
 
         [HttpPost("evaluate")]
-        public async Task<IActionResult> EvaluateAsync([FromBody] EligibilityRequest request)
+        public async Task<IActionResult> EvaluateAsync([FromBody] RiskTierCommand command)
         {
-            var result = await _riskCommadService.EvaluateAsync(request);
+            var result = await _mediator.Send(command);
 
-            return Ok(new RiskEligibilityResponse
+            var response = new RiskEligibilityResponse
             {
                 IsEligible = result.IsEligible,
                 RiskScore = result.RiskScore,
                 PolicyType = result.PolicyType,
                 RiskTier = result.RiskTier
-            });
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("tiers")]
 
         public async Task<IActionResult> GetTierAsync()
         {
-            var result = await _riskQueryService.GetAllAsync();
+            var result = await _mediator.Send(new RiskTierQuery());
             return Ok(result);
         }
     }

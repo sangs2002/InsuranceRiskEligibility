@@ -6,7 +6,7 @@
 
         public bool IsValid(EligibilityRequest entity)
         {
-            var age = AgeCalculator.CalculateAge(entity.DateOfBirth);
+            var age = entity.Age;
             return age >= EligibilityConstants.MinAge && age <= EligibilityConstants.MaxAge;
 
         }

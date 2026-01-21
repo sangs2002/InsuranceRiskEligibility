@@ -33,8 +33,12 @@ builder.Services.AddScoped<IRiskCalculationStrategy, CollisionPolicyRiskStrategy
 
 
 //Services
-builder.Services.AddScoped<IRiskCommandService, RiskEvaluationCommandService>();
-builder.Services.AddScoped<IRiskQueryService, RiskQueryService>();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(RiskTierCommand).Assembly));
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(RiskTierQuery).Assembly));
+
 
 // Repositories and Unit of Work
 builder.Services.AddScoped<ICustomerRespository, CustomerRespository>();

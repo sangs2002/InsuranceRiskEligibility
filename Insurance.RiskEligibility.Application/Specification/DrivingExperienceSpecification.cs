@@ -8,7 +8,7 @@
         public bool IsValid(EligibilityRequest entity)
         {
             var MinExperience = EligibilityConstants.MinDrivingExperience;
-            var MaxExperience = AgeCalculator.CalculateAge(entity.DateOfBirth);
+            var MaxExperience = entity.Age;
 
             return entity.DrivingExperience >= MinExperience &&
                    entity.DrivingExperience <= MaxExperience;

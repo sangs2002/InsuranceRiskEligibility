@@ -16,3 +16,4 @@ global using Insurance.RiskEligibility.Application.Abstraction.Risk.Implementati
 global using Insurance.RiskEligibility.Application.Abstraction.Risk.Implementations.RiskTiers;
 global using Insurance.RiskEligibility.Application.Abstraction.Risk.Implementations.Strategies;
 global using Insurance.RiskEligibility.Application.Abstraction.Risk.Interface;
+global using MediatR;
